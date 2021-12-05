@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Customer as CustomerResource;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class CustomerController extends Controller
         $customer->fill($request->all());
         $customer->save();
 
-        return response()->json($customer, 201);
+        return response()->json(new CustomerResource($customer), 201);
     }
 
     public function show($id)
@@ -43,7 +44,7 @@ class CustomerController extends Controller
             ], 404);
         }
 
-        return response()->json($customer);
+        return response()->json(new CustomerResource($customer));
     }
 
     public function update(Request $request, $id)
@@ -73,7 +74,7 @@ class CustomerController extends Controller
         $customer->fill($request->all());
         $customer->save();
 
-        return response()->json($customer);
+        return response()->json(new CustomerResource($customer));
     }
 
     public function destroy($id)
@@ -99,6 +100,6 @@ class CustomerController extends Controller
             ], 404);
         }
 
-        return response()->json($customers);
+        return response()->json(CustomerResource::collection($customers));
     }
 }
