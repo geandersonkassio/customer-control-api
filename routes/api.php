@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,3 +13,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/cliente', [CustomerController::class, 'store']);
+Route::put('/cliente/{id}', [CustomerController::class, 'update']);
+Route::get('/cliente/{id}', [CustomerController::class, 'show']);
+Route::delete('/cliente/{id}', [CustomerController::class, 'destroy']);
+Route::get('/consulta/final-placa/{numero}', [CustomerController::class, 'searchByLicensePlateLastNumber']);
