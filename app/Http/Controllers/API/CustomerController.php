@@ -7,6 +7,7 @@ use App\Http\Resources\Customer as CustomerResource;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
@@ -30,6 +31,8 @@ class CustomerController extends Controller
         $customer = new Customer;
         $customer->fill($request->all());
         $customer->save();
+
+        Log::info("Customer ID {$customer->id} created successfully.");
 
         return response()->json(new CustomerResource($customer), 201);
     }
@@ -74,6 +77,8 @@ class CustomerController extends Controller
         $customer->fill($request->all());
         $customer->save();
 
+        Log::info("Customer ID {$customer->id} updated successfully.");
+
         return response()->json(new CustomerResource($customer));
     }
 
@@ -88,6 +93,8 @@ class CustomerController extends Controller
         }
 
         $customer->delete();
+
+        Log::info("Customer ID {$customer->id} deleted successfully.");
     }
 
     public function searchByLicensePlateLastNumber($lastNumber)
