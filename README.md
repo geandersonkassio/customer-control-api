@@ -25,7 +25,7 @@ Database structure
 
 ```bash
 # Clone this repository
-$ git clone <https://github.com/geandersonkassio/customer-control-api>
+$ git clone https://github.com/geandersonkassio/customer-control-api
 
 # Access the project folder in the terminal/cmd
 $ cd customer-control-api
@@ -48,7 +48,7 @@ $ ./vendor/bin/sail up -d
 $ ./vendor/bin/sail artisan key:generate
 
 # run the app migrations
-$ ./vendor/bin/sail artisan migrate
+$ ./vendor/bin/sail artisan migrate:fresh
 
 # O servidor inciará na porta:80 - acesse <http://localhost/api>
 ```
@@ -70,35 +70,35 @@ $ ./vendor/bin/sail artisan migrate
 ### New customer registration. 
 
 ```shell
-	> curl -H "Content-Type: application/json" \
+> curl -H "Content-Type: application/json" \
 	  --request POST \
 	  --data '{"name":"usuario","phone":"11112222", "cpf":"12345678900","license_plate":"XRT5678"}' \
 	  http://localhost/api/cliente
 ```
 ### Editing an existing customer.
 ```shell
-	> curl -H "Content-Type: application/json" \
+> curl -H "Content-Type: application/json" \
 	  --request PUT \
 	  --data '{"name":"usuario","phone":"33334444", "cpf":"12345678900","license_plate":"XRT5678"}' \
 	  http://localhost/api/cliente/{id}
 ```
 ### Querying a customer's data.
 ```shell
-	> curl -H "Content-Type: application/json" \
-	  --request GET \
-	  http://localhost/api/cliente/{id}
+> curl -H "Content-Type: application/json" \
+	--request GET \
+	http://localhost/api/cliente/{id}
 ```
 
 ### Removal of an existing customer.
 ```shell
-	> curl -H "Content-Type: application/json" \
+> curl -H "Content-Type: application/json" \
 	  --request DELETE \
 	  http://localhost/api/cliente/{id}
 ```
 
 ### Consultation of all customers registered in the base, where the last number of the license plate is the same as the one informed.
 ```shell
-	> curl -H "Content-Type: application/json" \
+> curl -H "Content-Type: application/json" \
 	  --request GET \
 	  http://localhost/api//consulta/final-placa/{numero}
 ```
