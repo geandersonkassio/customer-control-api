@@ -19,21 +19,39 @@ Database structure
       - cpf
       - license_plate
 
-## Starting the application
+## Prerequisites and how to run the application
 
-Docker and docker-compose must be installed
+[Docker](https://www.docker.com/get-started) and [Docker-compose](https://docs.docker.com/compose/install/) must be installed
 
-    * git clone
-    * cd to repo
-    * docker run --rm \
+```bash
+# Clone this repository
+$ git clone <https://github.com/geandersonkassio/customer-control-api>
+
+# Access the project folder in the terminal/cmd
+$ cd customer-control-api
+
+# run the docker command
+$ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
     laravelsail/php80-composer:latest \
     composer install --ignore-platform-reqs
-    * ./vendor/bin/sail up -d
-    * ./vendor/bin/sail artisan migrate
-    
+
+# copy the .env file
+$ cp .env.example .env
+
+# run up docker containers with sail
+$ ./vendor/bin/sail up -d
+
+# generate the app key
+$ ./vendor/bin/sail artisan key:generate
+
+# run the app migrations
+$ ./vendor/bin/sail artisan migrate
+
+# O servidor inciará na porta:80 - acesse <http://localhost>
+```
 ## How to use
 
     BASEURL : http://localhost/api
@@ -84,4 +102,3 @@ Docker and docker-compose must be installed
 	  --request GET \
 	  http://localhost/api//consulta/final-placa/{numero}
 ```
-
