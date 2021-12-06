@@ -50,7 +50,7 @@ $ ./vendor/bin/sail artisan key:generate
 # run the app migrations
 $ ./vendor/bin/sail artisan migrate
 
-# O servidor inciará na porta:80 - acesse <http://localhost>
+# O servidor inciará na porta:80 - acesse <http://localhost/api>
 ```
 ## How to use
 
